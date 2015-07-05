@@ -89,7 +89,19 @@
 
                 $('.scroll-pane').jScrollPane();
 
+                $(".close_button").click(function(e){
+                    close_side_pane();
+                    e.preventDefault();
+                })
+
                 // selectOccupation(0);
+            }
+
+            function close_side_pane(){
+                $(".zoom_splash").hide();
+                $(".total_splash").show();
+                $("ul.list > li").removeClass("selected");
+
             }
 
             function selectOccupation(occupation_id){
@@ -175,13 +187,13 @@
                     [Methodology]<br><br>[References]
                 </div>
                 <div class="zoom_splash">
-                    <div class="occupation_header"></div>
+                    <div class="zoom_header"><div class="occupation_header"></div><div class="close_button">close</div></div>
                     <div class="glass_ceiling subcontainer">
                         <div class="image_holder">
                             <div id="female_high_ratio"></div><div id="male_high_ratio"></div>
                         </div>
                         <div class="description">
-                            A man is <span class="pink big" id="high_ratio_number">6 TIMES</span> more likely<br>to be in a high paying role.
+                            A man is <span class="pink big" id="high_ratio_number">6 TIMES</span> more likely to be in a high paying role.
                         </div>
                     </div>
                     <div class="income_inequality subcontainer">
@@ -228,6 +240,9 @@
                 </div>
             </div>
             <div class="clear"></div>
+            <div class="footer">
+                The Glass Ceiling Index was made as part of <a href="https://www.govhack.org/">Govhack 2015</a> by <a href="https://www.linkedin.com/pub/harry-cominos/1a/5a8/122">Harry Cominos</a>, <a href="https://www.linkedin.com/pub/lewis-bailey/4/634/867">Lewis Bailey</a> and <a href="https://www.linkedin.com/pub/robert-d-apice/1b/601/16">Robert d'Apice</a>. The Glass Ceiling uses tax data provided by the <a href="https://www.ato.gov.au/About-ATO/Research-and-statistics/In-detail/Tax-statistics/Taxation-statistics-2012-13/?page=22#Individuals">Australian Taxation Office</a>.<br>Download the source data as a <a href="glass_ceiling.txt">Tab Delimited Text File</a> or check out the <a href="https://github.com/dapbot/the-glass-ceiling-index">Github repository</a>.
+            </div>
         </div>
     </body>
 </html>

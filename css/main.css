@@ -58,11 +58,26 @@ h2 {
   display: none;
 }
 
-.occupation_header {
+.zoom_header {
   background: #ffeaef;
+  padding: 4px 0px;
+  text-align: center;  
+}
+
+.occupation_header {
+  width: 550px;
   font-size: 26px;
-  padding: 4px 8px;
-  text-align: center;
+  display: inline-block;
+}
+
+.close_button {
+  width: 30px;
+  font-size: 14px;
+  line-height: 37px;
+  color: #333;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
 }
 
 .hidden {
@@ -199,7 +214,8 @@ input.search.focus {
 #right_pane .description {
   color: #222;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 17px;
+  line-height: 21px;
   text-align: center;
   margin-top: 10px;
 }
@@ -316,6 +332,7 @@ input.search.focus {
   display:inline-block;
   height: 105px;
   width: 340px;
+  margin-bottom: 10px;
 }
 
 #woman_pink {
@@ -363,3 +380,15 @@ input.search.focus {
   clear:both;
 }
 
+
+.footer {
+  margin-top: 20px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #666;
+  text-align: center;
+}
+
+a, a:visited {
+  color: #f26d7d;
+}
