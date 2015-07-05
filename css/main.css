@@ -52,6 +52,7 @@ h2 {
 .total_splash {
   padding: 30px;
   background: #ffeaef;
+  font-size: 16px;
 }
 
 .zoom_splash {
@@ -66,7 +67,8 @@ h2 {
 
 .occupation_header {
   width: 550px;
-  font-size: 26px;
+  font-size: 20px;
+  line-height: 20px;
   display: inline-block;
 }
 
@@ -184,14 +186,28 @@ input.search.focus {
   margin-left: 10px;
   font-weight: bold;
   text-align: left;
+  padding-top: 12px;
 }
 
+
 #occupations li div.index_inches_container span.centered {
-  position: relative;
   display: block;
-  top: 50%; 
+  line-height: 22px;
+  padding-bottom: 3px;
+/*  top: 50%; 
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
+*/}
+
+#occupations li div.index_inches_container span {
+  display: block;
+}
+
+.units {
+  font-size: 10px;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 10px;
 }
 
 #right_pane .title {
@@ -391,4 +407,22 @@ input.search.focus {
 
 a, a:visited {
   color: #f26d7d;
+}
+
+.larger {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.not_bold {
+  font-weight: normal !important;
+}
+
+.tiny {
+  font-size: 12px;
+  line-height: 14px;
 }

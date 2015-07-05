@@ -44,6 +44,7 @@
                 var allTextLines = allText.split(/\r\n|\n/);
                 var headers = allTextLines[0].split('\t');
                 var lines = [];
+                var raw_occupations = [];
 
                 for (var i=1; i<allTextLines.length; i++) {
                     var data = allTextLines[i].split('\t');
@@ -54,12 +55,18 @@
                         for (var j=0; j<headers.length; j++) {
                             tarr[headers[j]] = data[j].replace(/"/g, "");
                         }
-                        occupations.push(tarr);
+                        if (tarr["Occupation"] == "TOTAL"){
+                            occupations.push(tarr);
+                        } else {                            
+                            raw_occupations.push(tarr);
+                        }
                     }
                 }
-                occupations.sort(function(a, b) {
+                raw_occupations.sort(function(a, b) {
                     return b["Index_Inches"] - a["Index_Inches"];
                 });
+
+                occupations = occupations.concat(raw_occupations);
 
                 $.each(occupations, function(i, o){
                     o["ID"] = i;
@@ -71,7 +78,7 @@
                 var options = {
                     page: 500,
                   valueNames: [ 'occupation', 'Index_Inches' ],
-                  item: "<li><span class='hidden ID'></span><h3><span class='Occupation centered'></span></h3><div class='glass_image'></div><div class='index_inches_container'><span class='Index_Inches centered'></span></li>"
+                  item: "<li><span class='hidden ID'></span><h3><span class='Occupation centered'></span></h3><div class='glass_image'></div><div class='index_inches_container'><span class='Index_Inches centered'></span><span class='units'>inches</span></div></li>"
                 };
 
                 var userList = new List('occupations', options, occupations);
@@ -159,7 +166,7 @@
 
         <div id="container">
             <h1>The Glass Ceiling Index</h1>
-            <h2>Which occupations are holding women back?</h2>
+            <h2>Which occupations are failing women?</h2>
             <div id="left_pane">
                 <div id="occupations">
                     <div class="form-group has-feedback">
@@ -176,15 +183,18 @@
             </div>
             <div id="right_pane">
                 <div class="total_splash">
-                    In 20XX, the Australian government committed to improving blah blah blah blah.<br><br>
-                    So where do we stand?
+                    <span class="larger"><span class="pink">The idea of equal pay for equal work has been protected in Australian law for over 40 years.</span><span class="not_bold"> Women now make up nearly half the workforce and young women today have better educational qualifications than men.</span></span><br><br>
+                    So, how thick is the glass ceiling in Australia? Women have broken through… <span class="italics">right?</span><br><br>
                     <ul>
-                        <li>Women earn, on average, as much as men in only 2% of occupations.</li>
-                        <li>There are only 4% of industries where a woman is more likely to have a high paying role: Truck drivers, XXXXXX, and YYYY</li>
-                        <li>Most worryingly, the income gap is *widening* in more than half of occupations in Australia. We are not getting better.</li>
+                        <li>On average, <span class="pink larger">women earn more in only 22 out of 433</span> occupations in Australia (that’s only 5%).</li>
+                        <li><span class="pink larger">Women are more likely to reach the highest paid roles in only 75 out of 433</span> occupations – around 15%.</li>
+                        <li>Even in occupations that are predominatly female, <span class="pink larger">women still earn $9000 (that’s 18%) less</span> than men in the same occupation.</li>
+                        <li>Disturbingly, the <span class="pink larger">average wage gap is getting wider</span>, growing by $3,200 between 2009 and 2013.</li>
                     </ul>
-                    We have created <span class="pink">The Glass Ceiling Index</span> to publicise the disadvantage Australian women experience across occupations. An index of 10.0 inches represents maximum disadvantage; an index of 0.0 inches means that no disadvantage is felt.<br><br>
-                    [Methodology]<br><br>[References]
+                    We have created <span class="pink larger">The Glass Ceiling Index</span> to publicise the disadvantage Australian women experience across occupations. The index has be developed by analysing 10 million individual tax returns across 440 occupation codes. The index is based on income gap, access to high paying roles and trends over time.<br><br>A Glass Ceiling Index of 10 inches represents maximum disadvantage; 0 inches means there is no apparent disadvantage.<br><br>
+                    <div class="tiny">
+                        The Glass Ceiling Index was made as part of <a href="https://www.govhack.org/">Govhack 2015</a> by <a href="https://www.linkedin.com/pub/harry-cominos/1a/5a8/122">Harry Cominos</a>, <a href="https://www.linkedin.com/pub/lewis-bailey/4/634/867">Lewis Bailey</a> and <a href="https://www.linkedin.com/pub/robert-d-apice/1b/601/16">Robert d'Apice</a>. The Glass Ceiling uses tax data provided by the <a href="https://www.ato.gov.au/About-ATO/Research-and-statistics/In-detail/Tax-statistics/Taxation-statistics-2012-13/?page=22#Individuals">Australian Taxation Office</a>. Download the source data as a <a href="glass_ceiling.txt">Tab Delimited Text File</a> or check out the <a href="https://github.com/dapbot/the-glass-ceiling-index">Github repository</a>.
+                    </div>
                 </div>
                 <div class="zoom_splash">
                     <div class="zoom_header"><div class="occupation_header"></div><div class="close_button">close</div></div>
@@ -193,7 +203,7 @@
                             <div id="female_high_ratio"></div><div id="male_high_ratio"></div>
                         </div>
                         <div class="description">
-                            A man is <span class="pink big" id="high_ratio_number">6 TIMES</span> more likely to be in a high paying role.
+                            A man is <span class="pink big" id="high_ratio_number">6 TIMES</span> more likely to reach a high paying role.
                         </div>
                     </div>
                     <div class="income_inequality subcontainer">
